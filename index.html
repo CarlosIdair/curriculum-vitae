@@ -4,75 +4,125 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Currículum Vitae | Carlos Idair</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
+    :root {
+      --color-primario: #0d3b66;
+      --color-secundario: #0077b6;
+      --color-fondo: #f5f7fa;
+      --color-texto: #333;
+      --color-acento: #90e0ef;
+      --color-card: #fff;
+      --color-footer: #eaf1f8;
+    }
+    body.dark {
+      --color-primario: #90e0ef;
+      --color-secundario: #48cae4;
+      --color-fondo: #0b0e11;
+      --color-texto: #e0e0e0;
+      --color-acento: #0077b6;
+      --color-card: #161a1f;
+      --color-footer: #111418;
+    }
+    * {
       margin: 0;
-      background-color: #f0f2f5;
-      color: #333;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     header {
-      background-color: #003366;
+      background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
       color: white;
-      padding: 40px 20px;
       text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-    header p {
-      margin-top: 10px;
-      font-size: 1.2em;
-      color: #cce0ff;
+      padding: 50px 20px;
+      transition: background 0.3s ease;
+      position: relative;
     }
     .foto {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      margin-top: 20px;
-      border: 4px solid #fff;
-      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      border: 5px solid white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #dff6ff;
     }
     .descargar {
       margin-top: 20px;
     }
     .descargar a {
       display: inline-block;
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
+      background-color: var(--color-acento);
+      color: var(--color-primario);
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
       text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
     }
     .descargar a:hover {
-      background-color: #0056b3;
+      background-color: white;
+      color: var(--color-secundario);
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      backdrop-filter: blur(4px);
+      transition: background 0.3s ease;
+    }
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
     }
     main {
       max-width: 900px;
       margin: 40px auto;
       padding: 20px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     section {
-      margin-bottom: 30px;
+      background-color: var(--color-card);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    }
+    section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
     h2 {
-      color: #003366;
-      border-bottom: 2px solid #e0e0e0;
+      color: var(--color-primario);
+      border-bottom: 2px solid var(--color-acento);
       padding-bottom: 5px;
+      margin-bottom: 15px;
     }
     ul {
-      list-style-type: none;
-      padding-left: 0;
+      list-style: none;
     }
     ul li {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .item {
       margin-bottom: 15px;
@@ -81,45 +131,48 @@
       text-align: center;
       padding: 20px;
       font-size: 14px;
-      color: #888;
+      color: #666;
+      background-color: var(--color-footer);
+      margin-top: 40px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.dark footer {
+      color: #aaa;
     }
   </style>
 </head>
-
-
 <body>
   <header>
+    <button class="theme-toggle" id="themeToggle">🌙 Oscuro</button>
     <img src="foto.jpg" alt="Foto de Carlos Idair" class="foto">
     <h1>Carlos Idair Ruiz Trejo</h1>
     <p>Licenciado en informática</p>
     <div class="descargar">
-      <a href="Curriculum CV-2025.pdf" download>Descargar CV en PDF</a>
+      <a href="Curriculum CV-2025.pdf" download>📄 Descargar CV en PDF</a>
     </div>
   </header>
   <main>
     <section>
       <h2>Datos de contacto</h2>
       <ul>
-        <li>Email: carlos.idair@gmail.com</li>
-        <li>Teléfono: 55 2244 6240</li>
-        <li>Ciudad de México</li>
+        <li>📧 Email: carlos.idair@gmail.com</li>
+        <li>📱 Teléfono: 55 2244 6240</li>
+        <li>📍 Ciudad de México</li>
       </ul>
     </section>
     <section>
       <h2>Perfil profesional</h2>
       <p>Licenciado en informática con experiencia en manejo de bases de datos, proporcionando soporte técnico a los usuarios y generación de reportes. 
-         Soy una persona responsable,confiable, adaptable, con actitud positiva, proactivo, que busca continuar sumando experiencia y conocimientos.</p>
+         Soy una persona responsable, confiable, adaptable, con actitud positiva, proactivo, que busca continuar sumando experiencia y conocimientos.</p>
     </section>
     <section>
       <h2>Experiencia laboral</h2>
       <div class="item">
         <strong>Universidad Nacional Autónoma de México</strong> — Jefe de área<br>
         <small>2009 - Actualidad</small>
-
-        <p>Dar formato a las bases de datos recibidas de la Dirección General de Administración Escolar(DGAE), subirlas a la plataforma, llevar a lectura óptica las cedulas contestadas del Examen Médico Automatizado (EMA), 
+        <p>Dar formato a las bases de datos recibidas de la Dirección General de Administración Escolar (DGAE), subirlas a la plataforma, llevar a lectura óptica las cédulas contestadas del Examen Médico Automatizado (EMA), 
           subir al sistema los archivos entregados por IIMAS correspondientes a las lecturas, procesar la información recabada, llevar a cabo la minería de datos con los resultados de la aplicación del EMA para su análisis.</p>
-         <p>Actualización de horarios del personal médico en el Sistema de Administración de Servicios Médicos (ASERMED), gestión de la base de datos para la generación de reportes de productividad del mes en curso. Apoyo de soporte informático a los usuarios de la DGAS.</p>
-                    
+        <p>Actualización de horarios del personal médico en el Sistema de Administración de Servicios Médicos (ASERMED), gestión de la base de datos para la generación de reportes de productividad del mes en curso. Apoyo de soporte informático a los usuarios de la DGAS.</p>
       </div>
     </section>
     <section>
@@ -134,22 +187,55 @@
     <section>
       <h2>Habilidades</h2>
       <ul>
-        <li>Manejo de herramientas ofimáticas</li>
-        <li>Manejo de Bases de Datos SQL Server</li>
-        <li>Soporte informático</li>
-        <li>Aprendizaje activo en HTML, CSS y JavaScript</li>
+        <li>💻 Manejo de herramientas ofimáticas</li>
+        <li>🗄 Manejo de Bases de Datos SQL Server</li>
+        <li>🛠 Soporte informático</li>
+        <li>🌐 Aprendizaje activo en HTML, CSS y JavaScript</li>
       </ul>
     </section>
     <section>
       <h2>Idiomas</h2>
       <ul>
-        <li>Español (nativo)</li>
-        <li>Inglés (Básico)</li>
+        <li>🇪🇸 Español (nativo)</li>
+        <li>🇬🇧 Inglés (básico)</li>
       </ul>
     </section>
   </main>
   <footer>
     &copy; 2025 Carlos Idair Ruiz Trejo | CV Web Personal
   </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Función para aplicar modo
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        body.classList.add('dark');
+        toggleBtn.textContent = '☀️ Claro';
+      } else {
+        body.classList.remove('dark');
+        toggleBtn.textContent = '🌙 Oscuro';
+      }
+    }
+
+    // Revisar preferencia guardada o sistema
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      applyTheme(savedTheme);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    // Evento de cambio
+    toggleBtn.addEventListener('click', () => {
+      const isDark = body.classList.contains('dark');
+      const newTheme = isDark ? 'light' : 'dark';
+      applyTheme(newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
 </body>
 </html>
